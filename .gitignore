@@ -1,0 +1,10 @@
+# Personal notes & assignment brief (not for GitHub)
+GHI_CHU_CAN_SUA.md
+*.docx
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
