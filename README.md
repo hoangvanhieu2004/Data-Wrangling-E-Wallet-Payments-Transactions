@@ -118,7 +118,7 @@ Data_wrangling_project/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/Data_wrangling_project.git
+   git clone https://github.com/hoangvanhieu2004/Data-Wrangling-Project-E-Wallet-Payments-Transactions.git
    cd Data_wrangling_project
    ```
 2. Install dependencies:
