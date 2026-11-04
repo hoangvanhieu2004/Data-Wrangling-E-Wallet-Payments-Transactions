@@ -8,3 +8,6 @@ GHI_CHU_CAN_SUA.md
 # Python
 __pycache__/
 *.pyc
+
+# Raw data is shipped as raws.zip
+raws/

@@ -25,10 +25,11 @@ Acting as a Data Analyst at an e-wallet company, the goal is to understand the s
 ```
 Data_wrangling_project/
 ├── data_wrangling_project.ipynb   # Main notebook
-├── raws/                          # Raw datasets
+├── raws.zip                       # Raw datasets (extracts to raws/)
 │   ├── payment_report.csv
 │   ├── product.csv
 │   └── transactions.csv
+├── images/                        # Result screenshots
 ├── .gitignore
 └── README.md
 ```
@@ -48,12 +49,24 @@ Data_wrangling_project/
 
 1. **Top 3 product_ids by payment volume.**
    → **429**, **372**, **431**.
+
+   ![Top 3 product_ids](images/Page_1.png)
+
 2. **Product ownership check** – verify that each `product_id` belongs to only one team.
    → No abnormal products found.
+
+   ![Product ownership check](images/Page_2.png)
+
 3. **Lowest-performing team since Q2 2023** and the category contributing the least to it (data ends in April 2023, so Q2 covers April only).
    → Team **APS**, category **PXXXXXE**.
+
+   ![Lowest team and category](images/Page_3.png)
+
 4. **Refund contribution by `source_id`** (`payment_group = "refund"`).
    → `source_id` **38** contributes the most (59.11%), followed by 39 (26.08%) and 37 (14.81%).
+
+   ![Refund contribution by source_id](images/Page_4.png)
+
 5. **Classify transactions** into a new `transaction_type` column using `np.select`:
 
    | Condition | Transaction type |
@@ -65,6 +78,8 @@ Data_wrangling_project/
    | `transType = 8` & `merchant_id = 2250` | Transfer Money Transaction |
    | `transType = 8` & other merchants | Split Bill Transaction |
    | Remaining cases | Invalid Transaction |
+
+   ![Transaction type counts](images/Page_5.png)
 
 6. **Summary by transaction type** (excluding invalid transactions):
 
@@ -79,7 +94,11 @@ Data_wrangling_project/
 
    *Senders/receivers are unique IDs. 220,658 rows are classified as Invalid Transaction.*
 
+   ![Summary by transaction type](images/Page_6.1.png)
+
    Success rate (`transStatus = 1`): Top Up 82.74%, Payment 94.96%, Bank Transfer 96.41%, Withdraw 99.91%, Transfer 99.95%, Split Bill 100%.
+
+   ![Success rate by transaction type](images/Page_6.2.png)
 
 ## Key Insights
 
@@ -106,7 +125,11 @@ Data_wrangling_project/
    ```bash
    pip install pandas numpy jupyter
    ```
-3. The notebook reads data from the `raws/` folder via `DATA_DIR` in the first cell. On Google Colab, set it to your Drive folder instead:
+3. Extract the raw data into the `raws/` folder:
+   ```bash
+   unzip raws.zip
+   ```
+   The notebook reads data from `raws/` via `DATA_DIR` in the first cell. On Google Colab, set it to your Drive folder instead:
    ```python
    DATA_DIR = "/content/drive/MyDrive/PyThon_Project2"
    ```
@@ -114,5 +137,3 @@ Data_wrangling_project/
    ```bash
    jupyter notebook data_wrangling_project.ipynb
    ```
-
-> **Note:** `raws/transactions.csv` is about 75 MB. GitHub warns on files over 50 MB and rejects files over 100 MB, so consider tracking it with [Git LFS](https://git-lfs.com/).
